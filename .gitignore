@@ -1,0 +1,25 @@
+nbproject/
+
+*/target/*
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Generic lock files & etc #
+*.swp
+*.bak
+*~
+*.un~
+*.lock
+*.DS_Store
+*.out
+[#]*[#]
+
+
+# rails #
+db/*.sqlite3
+log/*.log
+tmp/**/*
