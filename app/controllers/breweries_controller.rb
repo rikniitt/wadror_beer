@@ -10,6 +10,12 @@ class BreweriesController < ApplicationController
   # GET /breweries/1
   # GET /breweries/1.json
   def show
+  	@brewery = Brewery.find(params[:id])
+
+	respond_to do |format|
+		format.html # show.html.erb
+		format.json { render json: @brewery }
+	end
   end
 
   # GET /breweries/new
