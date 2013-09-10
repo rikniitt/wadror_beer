@@ -18,3 +18,15 @@ b2.beers.create :name => "Huvila Pale Ale", :style => "Pale Ale"
 b2.beers.create :name => "X Porter", :style => "Porter"
 b3.beers.create :name => "Hefezeizen", :style => "Weizen"
 b3.beers.create :name => "Helles", :style => "Lager"
+
+
+
+b4 = Brewery.create :name => "Brewdog", :year => 2007
+
+punk = b4.beers.create :name => "Punk IPA", :style => "IPA"
+nanny = b4.beers.create :name => "Nanny State", :style => "lowalcohol"
+
+punk.ratings.create :score => 25
+punk.ratings.create :score => 32
+nanny.ratings.create :score => 18
+nanny.ratings.create :score => 22
