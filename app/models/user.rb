@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
 	
 	attr_accessible :username, :beers, :ratings, :memberships, :beer_clubs
 	
-	has_many :ratings
+	has_many :ratings, :dependent => :destroy
 	has_many :beers, :through => :ratings
-	has_many :memberships
+	has_many :memberships, :dependent => :destroy
 	has_many :beer_clubs, :through => :memberships
 	
 	def to_s
