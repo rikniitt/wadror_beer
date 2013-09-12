@@ -25,6 +25,7 @@ b4 = Brewery.create :name => "Brewdog", :year => 2007
 punk = b4.beers.create :name => "Punk IPA", :style => "IPA"
 nanny = b4.beers.create :name => "Nanny State", :style => "lowalcohol"
 
+u = User.create :username => "tester"
 u = User.create :username => "dummy"
 
 punk.ratings.create :score => 25, :user_id => u.id
@@ -32,6 +33,7 @@ punk.ratings.create :score => 32, :user_id => u.id
 nanny.ratings.create :score => 18, :user_id => u.id
 nanny.ratings.create :score => 22, :user_id => u.id
 
+BeerClub.create :name => "Humanistien viinin makuisten oluiden seura", :founded => 2014, :city => "Helsinki"
 c = BeerClub.create :name => "Kumpulan hiiva", :founded => 2010, :city => "Helsinki"
 
 Membership.create :user_id => u.id, :beer_club_id => c.id
