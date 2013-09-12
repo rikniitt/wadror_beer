@@ -26,5 +26,12 @@
 	</ul>
 </p>
 
+	
+<% if not @brewery.ratings.empty? %>
+	<p>
+		<%= pluralize(@brewery.beers.length, 'beer of the brewery have', 'beer of the brewery has') %>  <%= pluralize(@brewery.ratings.length, 'rating') %>, average <%= @brewery.average_rating %>
+	</p>
+<% end %>
+
 <%= link_to 'Edit', edit_brewery_path(@brewery) %> |
 <%= link_to 'Back', breweries_path %>
