@@ -10,17 +10,18 @@ class RatingsController < ApplicationController
 	end
 	
 	def create
-		Rating.create params[:rating]
+		rating = Rating.create params[:rating]
 		# talletetaan tehty reittaus sessioon  
-		session[:last_rating] = "#{Beer.find(params[:rating][:beer_id])} #{params[:rating][:score]} points"
+		#session[:last_rating] = "#{Beer.find(params[:rating][:beer_id])} #{params[:rating][:score]} points"
+		current_user.ratings << rating
 		
-		redirect_to ratings_path
+		redirect_to user_path current_user
 	end
 	
 	def destroy
 		rating = Rating.find params[:id]
 		rating.delete
-		redirect_to ratings_path
+		redirect_to :back
 	end
 	
 end

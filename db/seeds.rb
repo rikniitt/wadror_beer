@@ -6,7 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
 b1 = Brewery.create :name => "Koff", :year => 1897
 b2 = Brewery.create :name => "Malmgard", :year => 2001
 b3 = Brewery.create :name => "Weihenstephaner", :year => 1042
@@ -26,7 +25,15 @@ b4 = Brewery.create :name => "Brewdog", :year => 2007
 punk = b4.beers.create :name => "Punk IPA", :style => "IPA"
 nanny = b4.beers.create :name => "Nanny State", :style => "lowalcohol"
 
-punk.ratings.create :score => 25
-punk.ratings.create :score => 32
-nanny.ratings.create :score => 18
-nanny.ratings.create :score => 22
+u = User.create :username => "dummy"
+
+punk.ratings.create :score => 25, :user_id => u.id
+punk.ratings.create :score => 32, :user_id => u.id
+nanny.ratings.create :score => 18, :user_id => u.id
+nanny.ratings.create :score => 22, :user_id => u.id
+
+c = BeerClub.create :name => "Kumpulan hiiva", :founded => 2010, :city => "Helsinki"
+
+Membership.create :user_id => u.id, :beer_club_id => c.id
+
+

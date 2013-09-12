@@ -8,22 +8,10 @@
 </head>
 <body>
 	<div class="navi">
-		<%= link_to 'breweries', breweries_path %>
-		<%= link_to 'beers', beers_path %>
-		<%= link_to 'ratings', ratings_path %>
-		
-		<% if not session[:user_id].nil? %>
-			| <p><%= User.find(session[:user_id]).username %> signed in</p>
-		<% end %>
+		<%= render "layouts/main_navi" %>
 	</div>
 
 	<%= yield %>
-	
-	<% if session[:last_rating].nil? %>
-		<p>no ratings given</p>
-	<% else %>
-		<p>previous rating: <%= session[:last_rating] %></p>
-	<% end %>
 
 </body>
 </html>
