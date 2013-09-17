@@ -10,12 +10,18 @@ class RatingsController < ApplicationController
 	end
 	
 	def create
-		rating = Rating.create params[:rating]
+		@rating = Rating.new params[:rating]
+		
 		# talletetaan tehty reittaus sessioon  
 		#session[:last_rating] = "#{Beer.find(params[:rating][:beer_id])} #{params[:rating][:score]} points"
-		current_user.ratings << rating
 		
-		redirect_to user_path current_user
+		if @rating.save
+			current_user.ratings << rating
+			redirect_to user_path current_user
+		else
+			@beers = Beer.all
+			render :new
+		end
 	end
 	
 	def destroy

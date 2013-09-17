@@ -58,5 +58,5 @@ group :production do
 end
 
 gem 'debugger', :group => :development
-
+gem 'bcrypt-ruby', '~> 3.0.0'
 

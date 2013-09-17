@@ -25,8 +25,7 @@ b4 = Brewery.create :name => "Brewdog", :year => 2007
 punk = b4.beers.create :name => "Punk IPA", :style => "IPA"
 nanny = b4.beers.create :name => "Nanny State", :style => "lowalcohol"
 
-u = User.create :username => "tester"
-u = User.create :username => "dummy"
+u = User.first
 
 punk.ratings.create :score => 25, :user_id => u.id
 punk.ratings.create :score => 32, :user_id => u.id

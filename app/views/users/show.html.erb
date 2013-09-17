@@ -11,7 +11,7 @@
 <ul>
 	<% @user.ratings.each do |rating| %>
 		<li> <%= rating %> 
-			<% if @user == current_user %>
+			<% if currently_signed_in? @user %>
 				<%= link_to 'delete', rating, :method => :delete, data: { confirm: 'Are you sure?' }  %>
 			<% end %>
 		 </li>
