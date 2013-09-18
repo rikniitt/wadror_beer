@@ -13,7 +13,7 @@ class Brewery < ActiveRecord::Base
 	def year_not_too_far_in_past_or_future
 		input_year = Integer(year)
 		current_year = Time.now.year
-		errors.add(:year, "year must be valid between 1024-#{current_year}") unless input_year.between?(1024, current_year)
+		errors.add(:year, "year must be between 1024-#{current_year}") unless input_year.between?(1024, current_year)
 	end
 	
 	def to_s
