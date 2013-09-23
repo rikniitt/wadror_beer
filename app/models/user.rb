@@ -28,4 +28,9 @@ class User < ActiveRecord::Base
 		return nil if ratings.empty?
 		favorite_beer.style
 	end
+	
+	def favorite_brewery
+		return nil if ratings.empty?
+		favorite_beer.brewery
+	end
 end

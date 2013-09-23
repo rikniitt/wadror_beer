@@ -19,22 +19,34 @@ FactoryGirl.define do
   end
 
   
-  factory :brewery do
+  factory :brewery, :class => Brewery do
 	name "Thornbridge"
 	year 2005
   end
     
-  factory :beer do
+  factory :jaipur, :class => Beer do
 	name "Jaipur"
 	brewery
     style "IPA"
   end
   
     
-  factory :beer2, :class => Beer do
+  factory :kill_darlings, :class => Beer do
 	name "Kill Your Darlings"
 	brewery
     style "Lager"
   end
-
+  
+  
+  factory :nogne, :class => Brewery do
+	name "Nogne"
+	year 2002
+  end
+  
+  factory :gpa, :class => Beer do
+	name "GPA"
+	brewery FactoryGirl.create(:nogne)
+	style "Pale ale"
+  end
+  
 end

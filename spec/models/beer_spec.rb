@@ -16,7 +16,7 @@ describe Beer do
 	end
 	
 	describe "with a proper name and style" do
-		let(:beer) { FactoryGirl.create :beer }
+		let(:beer) { FactoryGirl.create :jaipur }
 		
 		it "is saved" do
 			expect(beer.valid?).to eq(true)

@@ -57,67 +57,94 @@ describe User do
 		end
 	end
 	
-	describe "favorite beer" do
-		let(:user) { FactoryGirl.create :user }
-		
-		it "has method for determining one" do
-			user.should respond_to :favorite_beer
-		end
-		
-		it "without ratings does not have one" do
-			expect(user.favorite_beer).to eq(nil)
-		end
-		
-		it "is the only rated if only one rating" do
-			beer = create_beer_with_rating 10, user
-    
-			expect(user.favorite_beer).to eq(beer)
-		end
-		
-		it "is the one with highest rating if several rated" do
-			create_beers_with_ratings 10, 20, 15, 7, 9, user
-			best = create_beer_with_rating 25, user
-			
-			expect(user.favorite_beer).to eq(best)
-		end
-	end
 	
-	describe "favorite style" do
+	describe "favorite" do	
 		let(:user) { FactoryGirl.create :user }
 		
-		it "has method for determining one" do
-			user.should respond_to :favorite_style
-		end
-		
-		it "without ratings does not have one" do
-			expect(user.favorite_style).to eq(nil)
-		end
-		
-		it "is style of the only rated beer if only one rating" do
-			beer = create_beer_with_rating 10, user
-    
-			expect(user.favorite_style).to eq(beer.style)
-		end
+		describe "beer" do
+			it "has method for determining one" do
+				user.should respond_to :favorite_beer
+			end
 			
-		it "is the one with highest rating if several rated" do
-			create_beers_with_ratings 10, 20, 15, 7, 9, user
-			best = FactoryGirl.create(:beer2)
-			FactoryGirl.create(:rating, :score => 25,  :beer => best, :user => user)
+			it "without ratings does not have one" do
+				expect(user.favorite_beer).to eq(nil)
+			end
+			
+			it "is the only rated if only one rating" do
+				beer = create_beer_with_rating 10, user
+		
+				expect(user.favorite_beer).to eq(beer)
+			end
+			
+			it "is the one with highest rating if several rated" do
+				create_beers_with_ratings 10, 20, 15, 7, 9, user
+				best = create_beer_with_rating 25, user
 				
-			expect(user.favorite_style).to eq(best.style)
+				expect(user.favorite_beer).to eq(best)
+			end
+		end
+		
+		describe "style" do
+			it "has method for determining one" do
+				user.should respond_to :favorite_style
+			end
+			
+			it "without ratings does not have one" do
+				expect(user.favorite_style).to eq(nil)
+			end
+			
+			it "is style of the only rated beer if only one rating" do
+				beer = create_beer_with_rating 10, user
+		
+				expect(user.favorite_style).to eq(beer.style)
+			end
+				
+			it "is the one with highest rating if several rated" do
+				create_beers_with_ratings 10, 20, 15, 7, 9, user
+				best = FactoryGirl.create(:kill_darlings)
+				FactoryGirl.create(:rating, :score => 25,  :beer => best, :user => user)
+					
+				expect(user.favorite_style).to eq(best.style)
+			end
+		end
+
+		describe "brewery" do
+			it "has method for determining one" do
+				user.should respond_to :favorite_brewery
+			end
+					
+			it "without ratings does not have one" do
+				expect(user.favorite_brewery).to eq(nil)
+			end
+			
+			it "is brewery of the only rated beer if only one rating" do
+				beer = create_beer_with_rating 10, user
+		
+				expect(user.favorite_brewery).to eq(beer.brewery)
+			end
+			
+			it "is the brewery of the beer with highest rating if several rated" do
+				create_beers_with_ratings 10, 20, 15, 7, 9, user
+				best = FactoryGirl.create(:gpa)
+				FactoryGirl.create(:rating, :score => 25,  :beer => best, :user => user)
+					
+				expect(user.favorite_brewery).to eq(best.brewery)
+			end
+			
+		end
+
+		def create_beers_with_ratings(*scores, user)
+			scores.each do |score|
+				create_beer_with_rating score, user
+			end
+		end
+
+		def create_beer_with_rating(score, user)
+			beer = FactoryGirl.create(:jaipur)
+			FactoryGirl.create(:rating, :score => score,  :beer => beer, :user => user)
+			beer
 		end
 	end
 	
-	def create_beers_with_ratings(*scores, user)
-		scores.each do |score|
-			create_beer_with_rating score, user
-		end
-	end
-
-	def create_beer_with_rating(score, user)
-		beer = FactoryGirl.create(:beer)
-		FactoryGirl.create(:rating, :score => score,  :beer => beer, :user => user)
-		beer
-	end
 
 end
