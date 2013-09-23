@@ -1,10 +1,15 @@
 language: ruby
-
 rvm:
- - 1.9.3
-
+- 1.9.3
 script:
- - bundle exec rake db:migrate --trace
- - RAILS_ENV=test bundle exec rake db:migrate --trace
- - bundle exec rake db:test:prepare
- - bundle exec rspec -f d spec/
+- bundle exec rake db:migrate --trace
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec -f d spec/
+deploy:
+  provider: heroku
+  api_key:
+    secure: FQ2+lTjOxEfxq9fH2zbSb3ytSZyYQargIskiV5nSFU+VGHwELUjA94YYt6ZHCKCS7TVnhG2LULo8NhaMeJrIDseD7eb9GyThrWCxh0pFUq1LQIPUABVZCvhzparSpA0ueYabWQBNcXQe8crJNYLjqSy859Wt3pXGUvMO/UQXaFA=
+  app: salty-hamlet-3303
+  on:
+    repo: rikniitt/wadror_beer

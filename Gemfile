@@ -46,7 +46,9 @@ end
 
 
 gem 'protected_attributes'
-
+gem 'debugger', :group => :development
+gem 'bcrypt-ruby', '~> 3.0.0'
+gem "travis", "~> 1.5.2"
 
 group :development, :test do
   gem 'sqlite3'
@@ -65,6 +67,5 @@ group :production do
    gem 'rails_12factor' 
 end
 
-gem 'debugger', :group => :development
-gem 'bcrypt-ruby', '~> 3.0.0'
+
 
