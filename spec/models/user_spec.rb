@@ -93,4 +93,12 @@ describe User do
 			beer
 		end
 	end
+	
+	describe "favorite style" do
+		let(:user) { FactoryGirl.create :user }
+		
+		it "has method for determining one" do
+			user.should respond_to :favorite_style
+		end
+	end
 end
