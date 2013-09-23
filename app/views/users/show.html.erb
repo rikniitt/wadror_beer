@@ -28,6 +28,13 @@
 	</p>
 <% end %>
 
+<% if not @user.favorite_beer.nil? %>
+	<p>
+		Favorite beer:	
+		<%= @user.favorite_beer %>
+	</p>
+<% end %>
+
 <% if currently_signed_in? @user %>
 	<%= link_to 'Edit', edit_user_path(@user) %>
 	<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>

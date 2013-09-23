@@ -50,7 +50,11 @@ gem 'protected_attributes'
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'rspec-rails', '~> 2.0'
+  gem 'rspec-rails', '~> 2.0'  
+end
+
+group :test do
+  gem 'factory_girl_rails'
 end
 
 group :production do
