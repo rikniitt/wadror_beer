@@ -26,6 +26,6 @@ class User < ActiveRecord::Base
 	
 	def favorite_style
 		return nil if ratings.empty?
-		ratings.first.beer.style
+		favorite_beer.style
 	end
 end

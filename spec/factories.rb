@@ -12,6 +12,11 @@ FactoryGirl.define do
   factory :rating2, :class => Rating do
     score 20
   end
+  
+  
+  factory :rating do
+	score 10
+  end
 
   
   factory :brewery do
@@ -24,8 +29,12 @@ FactoryGirl.define do
 	brewery
     style "IPA"
   end
-
-  factory :rating do
-	score 10
+  
+    
+  factory :beer2, :class => Beer do
+	name "Kill Your Darlings"
+	brewery
+    style "Lager"
   end
+
 end
