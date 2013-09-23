@@ -22,7 +22,7 @@ FactoryGirl.define do
   factory :beer do
 	name "Jaipur"
 	brewery
-    style "Ipa"
+    style "IPA"
   end
 
   factory :rating do

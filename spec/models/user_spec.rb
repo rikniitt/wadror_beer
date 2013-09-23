@@ -80,18 +80,6 @@ describe User do
 			
 			expect(user.favorite_beer).to eq(best)
 		end
-		
-		def create_beers_with_ratings(*scores, user)
-			scores.each do |score|
-				create_beer_with_rating score, user
-			end
-		end
-
-		def create_beer_with_rating(score, user)
-			beer = FactoryGirl.create(:beer)
-			FactoryGirl.create(:rating, :score => score,  :beer => beer, :user => user)
-			beer
-		end
 	end
 	
 	describe "favorite style" do
@@ -100,5 +88,27 @@ describe User do
 		it "has method for determining one" do
 			user.should respond_to :favorite_style
 		end
+		
+		it "without ratings does not have one" do
+			expect(user.favorite_style).to eq(nil)
+		end
+		
+		it "is style of the only rated beer if only one rating" do
+			beer = create_beer_with_rating 10, user
+    
+			expect(user.favorite_style).to eq(beer.style)
+		end
+	end
+	
+	def create_beers_with_ratings(*scores, user)
+		scores.each do |score|
+			create_beer_with_rating score, user
+		end
+	end
+
+	def create_beer_with_rating(score, user)
+		beer = FactoryGirl.create(:beer)
+		FactoryGirl.create(:rating, :score => score,  :beer => beer, :user => user)
+		beer
 	end
 end
