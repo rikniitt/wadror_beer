@@ -45,7 +45,7 @@ FactoryGirl.define do
   
   factory :gpa, :class => Beer do
 	name "GPA"
-	brewery FactoryGirl.create(:nogne)
+	brewery { FactoryGirl.create(:nogne) }
 	style "Pale ale"
   end
   

@@ -25,12 +25,10 @@ class User < ActiveRecord::Base
 	end
 	
 	def favorite_style
-		return nil if ratings.empty?
-		favorite_beer.style
+		return favorite_beer.style unless ratings.empty?
 	end
 	
 	def favorite_brewery
-		return nil if ratings.empty?
-		favorite_beer.brewery
+		return favorite_beer.brewery unless ratings.empty?
 	end
 end
