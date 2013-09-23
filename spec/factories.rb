@@ -14,26 +14,37 @@ FactoryGirl.define do
   end
   
   
+  factory :brewery do
+	name "anonymous"
+	year 1900
+  end
+
+  factory :beer do
+	name "anonymous"
+	brewery
+	style "Lager"
+  end
+  
   factory :rating do
 	score 10
   end
 
   
-  factory :brewery, :class => Brewery do
+  factory :thornbridge, :class => Brewery do
 	name "Thornbridge"
 	year 2005
   end
     
   factory :jaipur, :class => Beer do
 	name "Jaipur"
-	brewery
+	brewery { FactoryGirl.create(:thornbridge) }
     style "IPA"
   end
   
     
   factory :kill_darlings, :class => Beer do
 	name "Kill Your Darlings"
-	brewery
+	brewery { FactoryGirl.create(:thornbridge) }
     style "Lager"
   end
   

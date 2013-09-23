@@ -16,7 +16,7 @@ class RatingsController < ApplicationController
 		#session[:last_rating] = "#{Beer.find(params[:rating][:beer_id])} #{params[:rating][:score]} points"
 		
 		if @rating.save
-			current_user.ratings << rating
+			current_user.ratings << @rating
 			redirect_to user_path current_user
 		else
 			@beers = Beer.all
