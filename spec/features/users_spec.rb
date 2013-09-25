@@ -35,6 +35,7 @@ describe "User" do
 	
 	describe "and has ratings" do
 		before :each do
+			sign_in 'Pekka69', 'mysecret1'
 			@beer = FactoryGirl.create :jaipur
 			@rating1 = FactoryGirl.create :rating1, :beer => @beer, :user => @user
 			@rating2 = FactoryGirl.create :rating2, :beer => @beer, :user => @user

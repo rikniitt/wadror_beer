@@ -2,19 +2,28 @@ require 'spec_helper'
 
 describe "Beer page" do
 
-	it "creates new beer" do
-		brewery = FactoryGirl.create(:thornbridge)
+	describe "when user is signed in" do
+		include OwnTestHelper
 		
-		visit new_beer_path
+		before :each do 
+			@user = FactoryGirl.create :user
+			sign_in("Pekka69", "mysecret1")
+		end
 		
-	    fill_in 'beer[name]', :with => 'Halcyon'
-	    select "IPA", :from => 'beer[style]'
-		select brewery.to_s, :from => 'beer[brewery_id]'
-		
-		expect {
-			click_button "Create Beer"
-		}.to change{ Beer.count }.by 1
-		
+		it "creates new beer" do
+			brewery = FactoryGirl.create(:thornbridge)
+			
+			visit new_beer_path
+			
+			fill_in 'beer[name]', :with => 'Halcyon'
+			select "IPA", :from => 'beer[style]'
+			select brewery.to_s, :from => 'beer[brewery_id]'
+			
+			expect {
+				click_button "Create Beer"
+			}.to change{ Beer.count }.by 1
+			
+		end
 	end
   
 	describe "when beer exists" do
@@ -40,7 +49,7 @@ describe "Beer page" do
 				@user = FactoryGirl.create :user
 				@rating1 = FactoryGirl.create :rating1, :beer => @jaipur, :user => @user
 				@rating2 = FactoryGirl.create :rating2, :beer => @jaipur, :user => @user
-				visit current_path # reload page
+				visit beer_path @jaipur
 			end
 			
 			it "displays average" do
