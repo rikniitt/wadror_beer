@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 	include RatingAverage
 	
-	attr_accessible :username, :beers, :ratings, :memberships, :beer_clubs, :password, :password_confirmation
+	attr_accessible :username, :beers, :ratings, :memberships, :beer_clubs, :password, :password_confirmation, :admin
 	
 	has_secure_password
 	
@@ -30,5 +30,9 @@ class User < ActiveRecord::Base
 	
 	def favorite_brewery
 		return favorite_beer.brewery unless ratings.empty?
+	end
+	
+	def is_admin?
+		admin == true
 	end
 end
