@@ -49,6 +49,7 @@ gem 'protected_attributes'
 gem 'debugger', :group => :development
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem "travis", "~> 1.5.2"
+gem 'httparty'
 
 group :development, :test do
   gem 'sqlite3'

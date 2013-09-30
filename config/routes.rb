@@ -20,6 +20,8 @@ Ratebeer::Application.routes.draw do
 	get 'signin', to: 'sessions#new'
 	delete 'signout', to: 'sessions#destroy'
 	get 'signup', to: 'users#new'
+	get 'places', to: 'places#index'
+	post 'places' => 'places#search'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
