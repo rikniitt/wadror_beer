@@ -6,10 +6,6 @@ class BeermappingAPI
 		Rails.cache.fetch(city, :expires_in => 1.hour) do
 			fetch_places_in city
 		end
-		
-		#Rails.cache.write city, fetch_places_in(city) if not Rails.cache.exist? city
-
-		#Rails.cache.read city
 	end
 
 	private

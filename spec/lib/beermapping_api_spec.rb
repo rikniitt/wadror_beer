@@ -131,6 +131,24 @@ describe "BeermappingAPI" do
 		expect(places.select{ |p|  p.id == "7429" and p.name == "Akkurat"}.size).to eq(1)
 		expect(places.select{ |p|  p.id == "7428" and p.name == "Oliver Twist"}.size).to eq(1) 
 	end
+	
+	
+	it "should not call fetch_places_in when cache exists" do
+		Rails.cache.write('kumpula', 'kumpula_places_as_array', :expires_in => 1.hour)
+		
+	    BeermappingAPI.should_receive(:fetch_places_in).with('kumpula').never
+	    
+	    assert_equal 'kumpula_places_as_array', BeermappingAPI.places_in('kumpula')
+	end
+	
+	it "should call fetch_places_in when cache doesn't exist" do
+		Rails.cache.clear
+		
+	    BeermappingAPI.should_receive(:fetch_places_in).with('kumpula')
+	    
+	    BeermappingAPI.places_in('kumpula')
+	end
+	
 
 	
 end
