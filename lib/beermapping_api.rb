@@ -7,7 +7,45 @@ class BeermappingAPI
 			fetch_places_in city
 		end
 	end
+	
+	
+	def self.location id
+		
+		location = place(id)
+		location.add_score(ratings(id))
 
+		location
+	end
+	
+	
+	def self.place id
+		url = "http://beermapping.com/webservice/locquery/#{key}/"
+		response = HTTParty.get "#{url}#{id}"
+		
+		place = response.parsed_response["bmp_locations"]["location"]
+		
+		if place.is_a?(Hash) and place['id'].nil?
+			[]
+		else
+			Place.new(place)
+		end
+	end
+	
+	
+	def self.ratings place_id
+		url = "http://beermapping.com/webservice/locscore/#{key}/"
+		response = HTTParty.get "#{url}#{place_id}"
+		
+		ratings = response.parsed_response["bmp_locations"]["location"]
+		
+		if ratings.is_a?(Hash)
+			ratings
+		else
+			{}
+		end
+	end
+	
+	
 	private
 		def self.fetch_places_in city
 			url = "http://beermapping.com/webservice/loccity/#{key}/"

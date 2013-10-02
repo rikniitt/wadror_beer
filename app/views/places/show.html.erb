@@ -1,0 +1,17 @@
+<h1><%= @place.name %></h1>
+
+<p><%= @place.street %></p>
+
+<p><%= @place.zip +  " " + @place.city %></p>
+
+<%= content_tag :iframe, "", src: @place.blogmap, width: 400, height: 400 %>
+
+
+<h2>Ratings</h2>
+
+<dl>
+	<% Place.score_rendered_fields.each do |k| %>
+		<dt><%= k %></dt>
+		<dd><%= @place.send(k) %></dd>
+	<% end %>
+</dl>
