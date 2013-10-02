@@ -18,7 +18,7 @@
 			<% @places.each do |place| %>
 				<tr>
 					<% Place.rendered_fields.each do |k| %>
-						<% if k.to_s == "name" %>
+						<% if k.to_s == "name" and not place.id.nil? %>
 							<td> <%= link_to place.name, controller: "places", action: "show", id: place.id %></td>
 						<% else %>
 							<td> <%=place.send(k) %> </td>
