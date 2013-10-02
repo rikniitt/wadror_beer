@@ -44,7 +44,12 @@ class BeermappingAPI
 			{}
 		end
 	end
-	
+			
+	def self.key
+		key = Settings.all[:beermapping_apikey]
+		raise "BeerMappingAPI key is not set!" unless key
+		key
+	end
 	
 	private
 		def self.fetch_places_in city
@@ -52,6 +57,7 @@ class BeermappingAPI
 			location = city.gsub(' ', '%20')
 
 			response = HTTParty.get "#{url}#{location}"
+			
 			places = response.parsed_response["bmp_locations"]["location"]
 
 			return [] if places.is_a?(Hash) and places['id'].nil?
@@ -61,8 +67,5 @@ class BeermappingAPI
 				set << Place.new(place)
 			end
 		end
-		
-		def self.key
-			Settings.all[:beermapping_apikey]
-		end
+
 end
