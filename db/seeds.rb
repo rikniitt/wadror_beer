@@ -24,7 +24,7 @@ helles_lager = Style.create :name => "Munich Helles Lager", :description => "Whe
 a_ipa = Style.create :name => "American IPA", :description => "The American IPA is a different soul from the reincarnated IPA style. More flavorful than the withering English IPA, color can range from very pale golden to reddish amber. Hops are typically American with a big herbal and / or citric character, bitterness is high as well. Moderate to medium bodied with a balancing malt backbone."
 low = Style.create :name => "Low Alcohol Beer", :description => "Low Alcohol Beer is also commonly known as Non Alcohol (NA) beer, which is a fallacy as all of these beers still contain small amounts of alcohol. Low Alcohol Beers are generally subjected to one of two things: a controlled brewing process that results in a low alcohol content, or the alcohol is removed using a reverse-osmosis method which passes alcohol through a permeable membrane. Very light on aroma, body, and flavor."
 e_ipa = Style.create :name => "Jaipur", :description => "First brewed in England and exported for the British troops in India during the late 1700s. To withstand the voyage, IPA's were basically tweaked Pale Ales that were, in comparison, much more malty, boasted a higher alcohol content and were well-hopped, as hops are a natural preservative. Historians believe that an IPA was then watered down for the troops, while officers and the elite would savor the beer at full strength. The English IPA has a lower alcohol due to taxation over the decades. The leaner the brew the less amount of malt there is and less need for a strong hop presence which would easily put the brew out of balance. Some brewers have tried to recreate the origianl IPA with strengths close to 8-9\% abv."
-vienna_lage = Style.create :name => "Vienna Lager", :description => "Named after the city in which it orginated, a traditional Vienna lager is brewed using a three step decoction boiling process. Munich, Pilsner, Vienna toasted and dextrin malts are used, as well wheat in some cases. Subtle hops, crisp, with residual sweetness. Although German in origin and rare these days, some classic examples come from Mexico, such as: Dos Equis and Negra Modelo. A result of late 19th century immigrant brewers from Austria."
+vienna_lager = Style.create :name => "Vienna Lager", :description => "Named after the city in which it orginated, a traditional Vienna lager is brewed using a three step decoction boiling process. Munich, Pilsner, Vienna toasted and dextrin malts are used, as well wheat in some cases. Subtle hops, crisp, with residual sweetness. Although German in origin and rare these days, some classic examples come from Mexico, such as: Dos Equis and Negra Modelo. A result of late 19th century immigrant brewers from Austria."
 apa = Style.create :name => "American Pale Ale", :description => "Of British origin, this style is now popular worldwide and the use of local ingredients, or imported, produces variances in character from region to region. Generally, expect a good balance of malt and hops. Fruity esters and diacetyl can vary from none to moderate, and bitterness can range from lightly floral to pungent. American versions tend to be cleaner and hoppier, while British tend to be more malty, buttery, aromatic and balanced."
 
 
@@ -45,13 +45,13 @@ BeerClub.create :name => "Humanistien viinin makuisten oluiden seura", :founded 
 c = BeerClub.create :name => "Kumpulan hiiva", :founded => 2010, :city => "Helsinki"
 
 
-u = User.first
+user = User.first
 
-punk.ratings.create :score => 25, :user_id => u.id
-punk.ratings.create :score => 32, :user_id => u.id
-nanny.ratings.create :score => 18, :user_id => u.id
-nanny.ratings.create :score => 22, :user_id => u.id
+punk.ratings.create :score => 25, :user_id => user.id
+punk.ratings.create :score => 32, :user_id => user.id
+nanny.ratings.create :score => 18, :user_id => user.id
+nanny.ratings.create :score => 22, :user_id => user.id
 
-Membership.create :user_id => u.id, :beer_club_id => c.id
+Membership.create :user_id => user.id, :beer_club_id => c.id
 
 
