@@ -13,6 +13,17 @@ FactoryGirl.define do
     score 20
   end
   
+  factory :style do
+	name "IPA"
+  end
+  
+  factory :lager, :class => Style do
+	name "Lager"
+  end
+  
+  factory :pale, :class => Style do
+	name "Pale Ale"
+  end
   
   factory :brewery do
 	name "anonymous"
@@ -22,7 +33,7 @@ FactoryGirl.define do
   factory :beer do
 	name "anonymous"
 	brewery
-	style "Lager"
+	style { FactoryGirl.create(:lager) }
   end
   
   factory :rating do
@@ -38,14 +49,14 @@ FactoryGirl.define do
   factory :jaipur, :class => Beer do
 	name "Jaipur"
 	brewery { FactoryGirl.create(:thornbridge) }
-    style "IPA"
+    style
   end
   
     
   factory :kill_darlings, :class => Beer do
 	name "Kill Your Darlings"
 	brewery { FactoryGirl.create(:thornbridge) }
-    style "Lager"
+    style { FactoryGirl.create(:lager) }
   end
   
   
@@ -57,7 +68,7 @@ FactoryGirl.define do
   factory :gpa, :class => Beer do
 	name "GPA"
 	brewery { FactoryGirl.create(:nogne) }
-	style "Pale ale"
+	style { FactoryGirl.create(:pale) }
   end
   
 end

@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe Beer do
 	it "is not saved without name" do
-		beer = Beer.create :style => "IPA"
+		style = FactoryGirl.create :pale
+		beer = Beer.create :style_id => style.id
 
 		expect(beer.valid?).to be(false)
 		expect(Beer.count).to eq(0)

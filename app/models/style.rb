@@ -4,9 +4,7 @@ class Style < ActiveRecord::Base
 	
 	has_many :beers
 	
-	validates_uniqueness_of :name
-	
-	
+
 	def to_s
 		name
 	end

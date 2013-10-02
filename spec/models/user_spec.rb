@@ -126,7 +126,7 @@ describe User do
 			it "is the brewery of the beer with highest rating if several rated" do
 				create_beers_with_ratings 10, 20, 15, 7, 9, user
 				best = FactoryGirl.create(:gpa)
-				FactoryGirl.create(:rating, :score => 25,  :beer => best, :user => user)
+				FactoryGirl.create(:rating, :score => 50,  :beer => best, :user => user)
 					
 				expect(user.favorite_brewery).to eq(best.brewery)
 			end

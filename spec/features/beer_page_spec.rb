@@ -12,11 +12,12 @@ describe "Beer page" do
 		
 		it "creates new beer" do
 			brewery = FactoryGirl.create(:thornbridge)
+			style = FactoryGirl.create(:pale)
 			
 			visit new_beer_path
 			
 			fill_in 'beer[name]', :with => 'Halcyon'
-			select "IPA", :from => 'beer[style]'
+			select style.to_s, :from => 'beer[style_id]'
 			select brewery.to_s, :from => 'beer[brewery_id]'
 			
 			expect {

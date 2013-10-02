@@ -12,6 +12,8 @@ b1 = Brewery.create :name => "Koff", :year => 1897
 b2 = Brewery.create :name => "Malmgard", :year => 2001
 b3 = Brewery.create :name => "Weihenstephaner", :year => 1042
 b4 = Brewery.create :name => "Brewdog", :year => 2007
+b5 = Brewery.create :name => "Thornbridge", :year => 2005
+b6 = Brewery.create :name => "Nogne", :year => 2002
 
 euro_lager = Style.create :name => "Euro Pale Lager", :description => "Similar to the Munich Helles story, many European countries reacted to the popularity of early pale lagers by brewing their own. Hop flavor is significant and of noble varieties, bitterness is moderate, and both are backed by a solid malt body and sweetish notes from an all-malt base."
 euro_strong_lager = Style.create :name => "Euro Strong Lager", :description => "Many breweries around the world brew a stronger version of their regular lager. For the US there is the Ice Beer & Malt Liquor, both have a high amount of rice or corn to lighten the flavor. Many European & Asian breweries have a strong lager similar to the Malt Liquor though there is more malt use or it is all malt. Many breweries rush the fermentation or the brew will be too light and signs of higher alcohols will be noticed in the aroma and flavor."
@@ -21,6 +23,10 @@ weizen = Style.create :name => "Heweizen", :description => "A south German style
 helles_lager = Style.create :name => "Munich Helles Lager", :description => "When the golden and clean lagers of Plzen (Bohemia) became all the rage in the mid-1800's, München brewers feared that Germans would start drinking the Czech beer vs. their own. Munich Helles Lager was their answer to meet the demand. A bit more malty, they often share the same spicy hop characters of Czech Pils, but are a bit more subdued and in balance with malts. \"Helles\" is German for \"bright.\""
 a_ipa = Style.create :name => "American IPA", :description => "The American IPA is a different soul from the reincarnated IPA style. More flavorful than the withering English IPA, color can range from very pale golden to reddish amber. Hops are typically American with a big herbal and / or citric character, bitterness is high as well. Moderate to medium bodied with a balancing malt backbone."
 low = Style.create :name => "Low Alcohol Beer", :description => "Low Alcohol Beer is also commonly known as Non Alcohol (NA) beer, which is a fallacy as all of these beers still contain small amounts of alcohol. Low Alcohol Beers are generally subjected to one of two things: a controlled brewing process that results in a low alcohol content, or the alcohol is removed using a reverse-osmosis method which passes alcohol through a permeable membrane. Very light on aroma, body, and flavor."
+e_ipa = Style.create :name => "Jaipur", :description => "First brewed in England and exported for the British troops in India during the late 1700s. To withstand the voyage, IPA's were basically tweaked Pale Ales that were, in comparison, much more malty, boasted a higher alcohol content and were well-hopped, as hops are a natural preservative. Historians believe that an IPA was then watered down for the troops, while officers and the elite would savor the beer at full strength. The English IPA has a lower alcohol due to taxation over the decades. The leaner the brew the less amount of malt there is and less need for a strong hop presence which would easily put the brew out of balance. Some brewers have tried to recreate the origianl IPA with strengths close to 8-9\% abv."
+vienna_lage = Style.create :name => "Vienna Lager", :description => "Named after the city in which it orginated, a traditional Vienna lager is brewed using a three step decoction boiling process. Munich, Pilsner, Vienna toasted and dextrin malts are used, as well wheat in some cases. Subtle hops, crisp, with residual sweetness. Although German in origin and rare these days, some classic examples come from Mexico, such as: Dos Equis and Negra Modelo. A result of late 19th century immigrant brewers from Austria."
+apa = Style.create :name => "American Pale Ale", :description => "Of British origin, this style is now popular worldwide and the use of local ingredients, or imported, produces variances in character from region to region. Generally, expect a good balance of malt and hops. Fruity esters and diacetyl can vary from none to moderate, and bitterness can range from lightly floral to pungent. American versions tend to be cleaner and hoppier, while British tend to be more malty, buttery, aromatic and balanced."
+
 
 b1.beers.create :name => "Iso 3", :style_id => euro_lager.id
 b1.beers.create :name => "Karhu", :style_id => euro_lager.id
@@ -31,6 +37,9 @@ b3.beers.create :name => "Hefeweissbier", :style_id => weizen.id
 b3.beers.create :name => "Original", :style_id => helles_lager.id
 punk = b4.beers.create :name => "Punk IPA", :style_id => a_ipa.id
 nanny = b4.beers.create :name => "Nanny State", :style_id => low.id
+b5.beers.create :name => "Jaipur", :style_id => e_ipa.id
+b5.beers.create :name => "Kill Your Darlings", :style_id => vienna_lager.id
+b6.beers.create :name => "GPA", :style_id => apa.id
 
 BeerClub.create :name => "Humanistien viinin makuisten oluiden seura", :founded => 2014, :city => "Helsinki"
 c = BeerClub.create :name => "Kumpulan hiiva", :founded => 2010, :city => "Helsinki"
