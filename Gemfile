@@ -50,6 +50,7 @@ gem 'debugger', :group => :development
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem "travis", "~> 1.5.2"
 gem 'httparty'
+gem "rails-settings-cached", "0.3.1"
 
 group :development, :test do
   gem 'sqlite3'
