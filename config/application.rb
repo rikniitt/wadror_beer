@@ -6,6 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
+
 module Ratebeer
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -21,5 +22,7 @@ module Ratebeer
     # config.i18n.default_locale = :de
     
     config.autoload_paths += Dir["#{Rails.root}/lib"]
+    
+    config.encoding = "utf-8"
   end
 end
