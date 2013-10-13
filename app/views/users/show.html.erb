@@ -1,51 +1,77 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong><%= @user.username %></strong>
-</p>
+<h2>
+  <%= @user.username %>
+</h2>
 
+<dl class="dl-horizontal">
+	<% if not @user.favorite_beer.nil? %>
+		<dt>Favorite beer</dt>
+		<dd><%= link_to @user.favorite_beer, beer_path(@user.favorite_beer)%></dd>
+		
+		<dt>Favorite style</dt>
+		<dd><%= link_to @user.favorite_style, style_path(@user.favorite_style) %></dd>
+		
+		<dt>Favorite brewery</dt>
+		<dd><%= link_to @user.favorite_brewery, brewery_path(@user.favorite_brewery) %></dd>
+		
+	<% end %>
+</dl>
+	
+<% if not @user.beer_clubs.empty? %>
+	<h3>Beer clubs</h3>
+	<p>
+		<strong>Belongs to:	</strong>
+		<ul>
+			<% @user.beer_clubs.each do |club| %>
+				<li><%= link_to club, club %></li>
+			<% end %>
+		</ul>
+	</p>
+	<p>
+		<strong>Application pending: </strong>
+		<ul>
+			<% @user.memberships.pending.each do |ms| %>
+				<li><%= link_to ms.beer_club, ms.beer_club %></li>
+			<% end %>
+		</ul>
+	</p>
+<% end %>
+
+
+<h3>Ratings</h3>
 <p>
-	has given <%= pluralize(@user.ratings.length, 'rating') %>, average <%= @user.average_rating %>
+	has given <%= pluralize(@user.ratings.length, 'rating') %>, average <%= round @user.average_rating %>
 </p>
 
 <ul>
 	<% @user.ratings.each do |rating| %>
-		<li> <%= rating %> 
+		<li> 
+			<%= rating %> 
 			<% if currently_signed_in? @user %>
-				<%= link_to 'delete', rating, :method => :delete, data: { confirm: 'Are you sure?' }  %>
+				<%= link_to 'delete', rating, :method => :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-danger'  %>
 			<% end %>
 		 </li>
 	<% end %>
 </ul>
 
 
-<% if not @user.beer_clubs.empty? %>
-	<p>
-		Belongs to:	
-		<% @user.beer_clubs.each do |club| %>
-			<%= link_to club, club %> 
-		<% end %>
-	</p>
-<% end %>
+
+
 
 <% if not @user.favorite_beer.nil? %>
+
 	<p>
-		Favorite beer:	
-		<%= @user.favorite_beer %>
 	</p>
 	<p>
-		Favorite style:	
-		<%= @user.favorite_style %>
-	</p>
-	<p>
-		Favorite brewery:	
-		<%= @user.favorite_brewery %>
+
 	</p>
 <% end %>
 
 <% if currently_signed_in? @user %>
-	<%= link_to 'Edit', edit_user_path(@user) %>
-	<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
+	<%= show_page_buttons edit_user_path(@user), @user, users_path %>
+<% else %>
+	<%= link_to 'Back', users_path, class: 'btn' %>
 <% end %>
-<%= link_to 'Back', users_path %>
+
 

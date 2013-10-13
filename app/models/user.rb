@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 	
 	validates_uniqueness_of :username
 	validates_length_of :username, :in => 3..15
-	validates_format_of :username, :with => /\A.*[^A-z]+.*\Z/, :message => "can't be all alpha"
+	validates_format_of :password, :with => /\A.*[^A-z]+.*\Z/, :message => "can't be all alpha"
 	validates_length_of :password, :minimum => 4
 	
 	def to_s
@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
 	
 	def is_admin?
 		admin == true
+	end
+	
+	def self.most_active(n)
+		self.all.sort_by{ |u| -u.ratings.size }.first(n)
 	end
 	
 	private

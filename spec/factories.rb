@@ -28,6 +28,7 @@ FactoryGirl.define do
   factory :brewery do
 	name "anonymous"
 	year 1900
+	active true
   end
 
   factory :beer do
@@ -44,6 +45,7 @@ FactoryGirl.define do
   factory :thornbridge, :class => Brewery do
 	name "Thornbridge"
 	year 2005
+	active true
   end
     
   factory :jaipur, :class => Beer do
@@ -63,6 +65,7 @@ FactoryGirl.define do
   factory :nogne, :class => Brewery do
 	name "Nogne"
 	year 2002
+	active true
   end
   
   factory :gpa, :class => Beer do

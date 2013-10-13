@@ -1,9 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<h2>
   <%= @beer_club.name %>
-</p>
+</h2>
 
 <p>
   <strong>Founded:</strong>
@@ -19,20 +18,34 @@
 <p>
 	<strong>Members: </strong>
 	<ul>
-		<% @beer_club.members.each do |m| %>
-			<li><%= link_to m.username, m %></li>
+		<% @members.each do |m| %>
+			<li><%= link_to m.user.username, m %></li>
 		<% end %>
 	</ul>
 </p>
+
+<% if @beer_club.already_member?(current_user) %>
+	<p>
+		<strong>Pending applications: </strong>
+		<ul>
+			<% @pending.each do |m| %>
+				<li>
+					<%= link_to m.user.username, m %>
+					<%= link_to "confirm", confirm_membership_path(m), :method => :post, :class => "btn" %>
+				</li>
+			<% end %>
+		</ul>
+	</p>
+<% end %>
 
 <p>
 	<h4>Join to club:</h4>
 
 	<%= form_for(@membership) do |f| %>
 	  <%= f.hidden_field :beer_club_id %>
-	  <%= f.submit %>
+	  <%= f.submit :class => 'btn btn-primary' %>
 	<% end %>
 </p>
 
-<%= link_to 'Edit', edit_beer_club_path(@beer_club) if current_user %>
-<%= link_to 'Back', beer_clubs_path %>
+
+<%= show_page_buttons edit_beer_club_path(@beer_club), @beer_club, beer_clubs_path %>

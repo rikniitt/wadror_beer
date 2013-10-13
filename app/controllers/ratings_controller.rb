@@ -3,7 +3,15 @@ class RatingsController < ApplicationController
 	before_filter :ensure_that_signed_in, :except => [:index]
 	
 	def index
-		@ratings = Rating.all
+		@ratings = Rating.all(:include => :beer)
+		
+		@top_beers = Beer.top 3
+		@top_breweries = Brewery.top 3
+		@top_styles = Style.top 3
+		
+		@most_active = User.most_active 3
+		
+		@recent_ratings = Rating.recent
 	end
 	
 	def new
@@ -33,3 +41,4 @@ class RatingsController < ApplicationController
 	end
 	
 end
+

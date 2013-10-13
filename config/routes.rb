@@ -27,6 +27,14 @@ Ratebeer::Application.routes.draw do
 	post 'places' => 'places#search'
 	
 	get 'beerlist' => 'beers#list'
+	
+	resources :breweries do
+	  post 'toggle_activity', :on => :member
+	end
+	
+	resources :memberships do
+	  post 'confirm', :on => :member
+	end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

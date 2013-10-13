@@ -1,5 +1,6 @@
 class Beer < ActiveRecord::Base
 	include RatingAverage
+	extend TopRated
 	
 	attr_accessible :name, :style, :brewery_id, :raters, :style_id
 
@@ -10,7 +11,7 @@ class Beer < ActiveRecord::Base
 	
 	validates_presence_of :name
 	validates_presence_of :style_id
-
+	
 	def to_s
 		"#{name}, #{brewery.name}"
 	end

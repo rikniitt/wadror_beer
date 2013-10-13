@@ -2,6 +2,9 @@
 
 <h2>
 	<%= @brewery.name %>
+	<% if not @brewery.active  %>
+		<span class="label">retired</span>
+	<% end %>
 </h2>
 
 
@@ -29,9 +32,9 @@
 	
 <% if not @brewery.ratings.empty? %>
 	<p>
-		<%= pluralize(@brewery.beers.length, 'beer of the brewery have', 'beer of the brewery has') %>  <%= pluralize(@brewery.ratings.length, 'rating') %>, average <%= @brewery.average_rating %>
+		<%= pluralize(@brewery.beers.length, 'beer of the brewery have', 'beer of the brewery has') %>  <%= pluralize(@brewery.ratings.length, 'rating') %>, average <%= round @brewery.average_rating %>
 	</p>
 <% end %>
 
-<%= link_to 'Edit', edit_brewery_path(@brewery) if current_user %>
-<%= link_to 'Back', breweries_path %>
+<%= link_to "change activity", toggle_activity_brewery_path(@brewery.id), :method => :post, :class => "btn" %>
+<%= show_page_buttons edit_brewery_path(@brewery), @brewery, breweries_path %>

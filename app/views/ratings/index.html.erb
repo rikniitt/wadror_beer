@@ -1,6 +1,58 @@
-<h2>List of ratings</h2>
+<h1>Ratings</h1>
 
-<%= render "ratings/list" %>
+<p>total number of ratings <%= @ratings.length %>
+
+<div class="container">
+	<div class="row">
+		<div class="span3">
+			<h3>top beers</h3>
+			<%= render "ratings/top_table", :top => @top_beers %>
+		</div>
+		
+		<div class="span3">
+			<h3>top breweries</h3>
+			<%= render "ratings/top_table", :top => @top_breweries %>
+		</div>
+		
+		<div class="span3">
+			<h3>top styles</h3>
+			<%= render "ratings/top_table", :top => @top_styles %>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="span12">
+			<h3>most active users</h3>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th></th>
+						<th>favorite beer</th>
+						<th>favorite brewery</th>
+						<th>prefered style</th>
+						<th>ratings</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% @most_active.each do |user| %>
+						<tr>
+							<td><%= link_to user, user %></td>
+							<td><%= user.favorite_beer %></td>
+							<td><%= user.favorite_brewery %></td>
+							<td><%= user.favorite_style %></td>
+							<td><%= user.ratings.length %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+<h3>recent ratings</h3>
+<%= render "ratings/list", :ratings => @recent_ratings %>
 
 <!--
 <% if session[:last_rating].nil? %>
@@ -10,4 +62,4 @@
 <% end %>
 -->
 
-<%= link_to 'New Rating', new_rating_path if current_user %>
+<%= link_to 'New Rating', new_rating_path, class: 'btn btn-primary' if current_user %>

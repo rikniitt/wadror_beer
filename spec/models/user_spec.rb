@@ -23,8 +23,8 @@ describe User do
 		expect(User.count).to eq(0)
 	end
 	
-	it "is not saved with username containing only character" do
-		user = User.create :username => "Pekka", :password => "mysecret1", :password_confirmation=> "mysecret1"
+	it "is not saved with password containing only character" do
+		user = User.create :username => "Pekka69", :password => "mysecret", :password_confirmation=> "mysecret"
 
 		expect(user.valid?).to be(false)
 		expect(User.count).to eq(0)

@@ -51,6 +51,10 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem "travis", "~> 1.5.2"
 gem 'httparty'
 gem "rails-settings-cached", "0.3.1"
+gem 'therubyracer'
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
+
 
 group :development, :test do
   gem 'sqlite3'
@@ -63,6 +67,8 @@ group :test do
   gem 'launchy'
   gem 'simplecov', :require => false
   gem 'webmock'
+  gem 'selenium-webdriver' 
+  gem 'database_cleaner', '< 1.1.0'
 end
 
 group :production do

@@ -1,18 +1,22 @@
-<h1>Beer places search</h1>
+<h1>Beer Places Search</h1>
 
 <p id="notice"><%= notice %></p>
 
 <%= form_tag places_path do %>
-	city <%= text_field_tag :city, params[:city] %>
-	<%= submit_tag "Search" %>
+	<div class="input-append">
+		<%= text_field_tag :city, params[:city], class: "span2", placeholder: "search city" %>
+		<%= submit_tag "Search", class: 'btn btn-primary' %>
+	</div>
 <% end %>
 
 <% if @places %>
-	<table>
+	<table class="table table-hover">
 		<thead>
-			<% Place.rendered_fields.each do |k| %>
-				<td> <%=k %> </td>
-			<% end %>
+			<tr>
+				<% Place.rendered_fields.each do |k| %>
+					<th> <%=k %> </th>
+				<% end %>
+			</tr>
 		</thead>
 		<tbody>
 			<% @places.each do |place| %>
@@ -29,3 +33,4 @@
 		</tbody>
 	</table>
 <% end %>
+

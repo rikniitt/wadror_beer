@@ -1,9 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<h2>
   <%= @style.name %>
-</p>
+</h2>
 
 <p>
   <strong>Description:</strong>
@@ -19,5 +18,5 @@
   </ul>
 </p>
 
-<%= link_to 'Edit', edit_style_path(@style) %> |
-<%= link_to 'Back', styles_path %>
+
+<%= show_page_buttons edit_style_path(@style), false, styles_path %>

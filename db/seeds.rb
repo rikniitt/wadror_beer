@@ -8,12 +8,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-b1 = Brewery.create :name => "Koff", :year => 1897
-b2 = Brewery.create :name => "Malmgard", :year => 2001
-b3 = Brewery.create :name => "Weihenstephaner", :year => 1042
-b4 = Brewery.create :name => "Brewdog", :year => 2007
-b5 = Brewery.create :name => "Thornbridge", :year => 2005
-b6 = Brewery.create :name => "Nogne", :year => 2002
+b1 = Brewery.create :name => "Koff", :year => 1897, :active => true
+b2 = Brewery.create :name => "Malmgard", :year => 2001, :active => true
+b3 = Brewery.create :name => "Weihenstephaner", :year => 1042, :active => true
+b4 = Brewery.create :name => "Brewdog", :year => 2007, :active => true
+b5 = Brewery.create :name => "Thornbridge", :year => 2005, :active => true
+b6 = Brewery.create :name => "Nogne", :year => 2002, :active => true
+b7 = Brewery.create :name => "Amalienborg", :year => 1853, :active => false
 
 euro_lager = Style.create :name => "Euro Pale Lager", :description => "Similar to the Munich Helles story, many European countries reacted to the popularity of early pale lagers by brewing their own. Hop flavor is significant and of noble varieties, bitterness is moderate, and both are backed by a solid malt body and sweetish notes from an all-malt base."
 euro_strong_lager = Style.create :name => "Euro Strong Lager", :description => "Many breweries around the world brew a stronger version of their regular lager. For the US there is the Ice Beer & Malt Liquor, both have a high amount of rice or corn to lighten the flavor. Many European & Asian breweries have a strong lager similar to the Malt Liquor though there is more malt use or it is all malt. Many breweries rush the fermentation or the brew will be too light and signs of higher alcohols will be noticed in the aroma and flavor."
@@ -28,30 +29,72 @@ vienna_lager = Style.create :name => "Vienna Lager", :description => "Named afte
 apa = Style.create :name => "American Pale Ale", :description => "Of British origin, this style is now popular worldwide and the use of local ingredients, or imported, produces variances in character from region to region. Generally, expect a good balance of malt and hops. Fruity esters and diacetyl can vary from none to moderate, and bitterness can range from lightly floral to pungent. American versions tend to be cleaner and hoppier, while British tend to be more malty, buttery, aromatic and balanced."
 
 
-b1.beers.create :name => "Iso 3", :style_id => euro_lager.id
-b1.beers.create :name => "Karhu", :style_id => euro_lager.id
-b1.beers.create :name => "Tuplahumala", :style_id => euro_strong_lager.id
-b2.beers.create :name => "Huvila Pale Ale", :style_id => pale_ale.id
-b2.beers.create :name => "X Porter", :style_id => baltic_porter.id
-b3.beers.create :name => "Hefeweissbier", :style_id => weizen.id
-b3.beers.create :name => "Original", :style_id => helles_lager.id
+iso = b1.beers.create :name => "Iso 3", :style_id => euro_lager.id
+karhu = b1.beers.create :name => "Karhu", :style_id => euro_lager.id
+th = b1.beers.create :name => "Tuplahumala", :style_id => euro_strong_lager.id
+huvila = b2.beers.create :name => "Huvila Pale Ale", :style_id => pale_ale.id
+xporter = b2.beers.create :name => "X Porter", :style_id => baltic_porter.id
+hefe = b3.beers.create :name => "Hefeweissbier", :style_id => weizen.id
+og = b3.beers.create :name => "Original", :style_id => helles_lager.id
 punk = b4.beers.create :name => "Punk IPA", :style_id => a_ipa.id
 nanny = b4.beers.create :name => "Nanny State", :style_id => low.id
-b5.beers.create :name => "Jaipur", :style_id => e_ipa.id
-b5.beers.create :name => "Kill Your Darlings", :style_id => vienna_lager.id
-b6.beers.create :name => "GPA", :style_id => apa.id
+jaipur = b5.beers.create :name => "Jaipur", :style_id => e_ipa.id
+kill = b5.beers.create :name => "Kill Your Darlings", :style_id => vienna_lager.id
+gpa = b6.beers.create :name => "GPA", :style_id => apa.id
 
 BeerClub.create :name => "Humanistien viinin makuisten oluiden seura", :founded => 2014, :city => "Helsinki"
 c = BeerClub.create :name => "Kumpulan hiiva", :founded => 2010, :city => "Helsinki"
 
-
 user = User.first
 
-punk.ratings.create :score => 25, :user_id => user.id
+iso.ratings.create :score => 15, :user_id => user.id
+karhu.ratings.create :score => 18, :user_id => user.id
+th.ratings.create :score => 19, :user_id => user.id
+huvila.ratings.create :score => 23, :user_id => user.id
+xporter.ratings.create :score => 27, :user_id => user.id
+hefe.ratings.create :score => 38, :user_id => user.id
+og.ratings.create :score => 33, :user_id => user.id
+punk.ratings.create :score => 45, :user_id => user.id
 punk.ratings.create :score => 32, :user_id => user.id
-nanny.ratings.create :score => 18, :user_id => user.id
-nanny.ratings.create :score => 22, :user_id => user.id
+nanny.ratings.create :score => 7, :user_id => user.id
+nanny.ratings.create :score => 11, :user_id => user.id
+jaipur.ratings.create :score => 46, :user_id => user.id
+kill.ratings.create :score => 44, :user_id => user.id
+gpa.ratings.create :score => 39, :user_id => user.id
 
-Membership.create :user_id => user.id, :beer_club_id => c.id
+Membership.create :user_id => user.id, :beer_club_id => c.id, :confirmed => true
 
 
+users = 100
+breweries = 50
+beers_in_brewery = 50
+ratings_per_user = 30
+
+(1..users).each do |i|
+  User.create :username => "user_#{i}", :password => "passwd1", :password_confirmation => "passwd1"
+end
+
+(1..breweries).each do |i|
+  Brewery.create :name => "brewery_#{i}", :year => 1900, :active => true
+end
+
+bulk = Style.create :name => "bulk", :description => "cheap, not much taste"
+
+Brewery.all.each do |b|
+  n = rand(beers_in_brewery)
+  (1..n).each do |i|
+    beer = Beer.create :name => "beer #{b.id} -- #{i}"
+    beer.style = bulk
+    b.beers << beer
+  end
+end
+
+User.all.each do |u|
+  n = rand(ratings_per_user)
+  beers = Beer.all.shuffle
+  (1..n).each do |i|
+    r = Rating.new :score => (1+rand(50))
+    beers[i].ratings << r
+    u.ratings << r
+  end
+end

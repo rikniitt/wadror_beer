@@ -7,11 +7,19 @@
 	<%= csrf_meta_tags %>
 </head>
 <body>
-	<div class="navi">
-		<%= render "layouts/main_navi" %>
+	
+	<%= render "layouts/main_navi" %>
+	
+	<div class="container">
+	  <div class="row">
+		<div class="span9">
+		  <%= yield %>
+		</div>
+		<div class="span3">
+		  <%= image_tag("olut.jpg", width: 100) %>
+		</div>
+	  </div>
 	</div>
-
-	<%= yield %>
 
 </body>
 </html>

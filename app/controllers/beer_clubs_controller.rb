@@ -12,6 +12,9 @@ class BeerClubsController < ApplicationController
   def show
   	@membership = Membership.new
 	@membership.beer_club = @beer_club
+	
+	@members = @beer_club.memberships.active
+	@pending = @beer_club.memberships.pending
   end
 
   # GET /beer_clubs/new
@@ -26,10 +29,17 @@ class BeerClubsController < ApplicationController
   # POST /beer_clubs
   # POST /beer_clubs.json
   def create
+	if current_user.nil?
+		redirect_to signin_path
+		return
+	end
+	
     @beer_club = BeerClub.new(beer_club_params)
-
+    
     respond_to do |format|
       if @beer_club.save
+		Membership.create user: current_user, beer_club: @beer_club, confirmed: true
+	
         format.html { redirect_to @beer_club, notice: 'Beer club was successfully created.' }
         format.json { render action: 'show', status: :created, location: @beer_club }
       else

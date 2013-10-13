@@ -60,6 +60,13 @@ class MembershipsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def confirm
+    membership = Membership.find(params[:id])
+    membership.update_attribute :confirmed, true
+    
+    redirect_to :back, :notice => "Membership confirmed!"
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -69,6 +76,6 @@ class MembershipsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def membership_params
-      params.require(:membership).permit(:beer_club_id, :user_id)
+      params.require(:membership).permit(:beer_club_id, :user_id, :confirmed)
     end
 end
