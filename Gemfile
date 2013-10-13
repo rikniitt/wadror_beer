@@ -54,7 +54,8 @@ gem "rails-settings-cached", "0.3.1"
 gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
-
+gem 'actionpack-page_caching'
+gem 'actionpack-action_caching'
 
 group :development, :test do
   gem 'sqlite3'

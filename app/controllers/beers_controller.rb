@@ -1,7 +1,8 @@
 class BeersController < ApplicationController
+
   before_action :set_beer, only: [:show, :edit, :update, :destroy]
   before_filter :ensure_that_signed_in, :except => [:index, :show, :list]
-
+  
   def list
   end
 
@@ -9,7 +10,8 @@ class BeersController < ApplicationController
   # GET /beers.json
   def index
 	sort_order = ['name', 'brewery', 'style'].include?(params[:order]) ? params[:order] : 'name';  
-    @beers = Beer.all(:include => [:brewery, :style]).sort_by { |b| b.send(sort_order) }
+    #@beers = Beer.all(:include => [:brewery, :style]).sort_by { |b| b.send(sort_order) }
+    @beers = Beer.all.sort_by { |b| b.send(sort_order) }
     
     respond_to do |format|
 		format.html # index.html.erb
@@ -50,7 +52,8 @@ class BeersController < ApplicationController
 
     respond_to do |format|
       if @beer.save
-        #format.html { redirect_to @beer, notice: 'Beer was successfully created.' }
+        expire_action :action => :index
+        
         format.html { redirect_to beers_path, notice: 'Beer was successfully created.' }
         format.json { render action: 'show', status: :created, location: @beer }
       else
@@ -65,6 +68,8 @@ class BeersController < ApplicationController
   def update
     respond_to do |format|
       if @beer.update(beer_params)
+        expire_action :action => :index
+        
         format.html { redirect_to @beer, notice: 'Beer was successfully updated.' }
         format.json { head :no_content }
       else
@@ -78,6 +83,8 @@ class BeersController < ApplicationController
   # DELETE /beers/1.json
   def destroy
     @beer.destroy
+    expire_action :action => :index
+    
     respond_to do |format|
       format.html { redirect_to beers_url }
       format.json { head :no_content }

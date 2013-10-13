@@ -1,24 +1,27 @@
 <h1>Beers</h1>
 
+
 <table class="table table-hover">
   <thead>
-    <tr>
+	<tr>
 		<th> <%= link_to 'Name', beers_path(:order => "name") %> </th>
 		<th> <%= link_to 'Style', beers_path(:order => "style") %> </th>
 		<th> <%= link_to 'Brewery', beers_path(:order => "brewery") %> </th>
-    </tr>
+	</tr>
   </thead>
 
   <tbody>
-    <% @beers.each do |beer| %>
-      <tr>
-        <td><%= link_to beer.name, beer %></td>
-        <td><%= beer.style %></td>
-        <td><%= link_to beer.brewery.name, beer.brewery %></td>
-      </tr>
-    <% end %>
+	<% @beers.each do |beer| %>
+	  <tr>
+		<td><%= link_to beer.name, beer %></td>
+		<td><%= beer.style %></td>
+		<td><%= link_to beer.brewery.name, beer.brewery %></td>
+	  </tr>
+	<% end %>
   </tbody>
 </table>
+
+
 
 <br>
 
