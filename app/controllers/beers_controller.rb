@@ -10,8 +10,8 @@ class BeersController < ApplicationController
   # GET /beers.json
   def index
 	sort_order = ['name', 'brewery', 'style'].include?(params[:order]) ? params[:order] : 'name';  
-    #@beers = Beer.all(:include => [:brewery, :style]).sort_by { |b| b.send(sort_order) }
-    @beers = Beer.all.sort_by { |b| b.send(sort_order) }
+	#@beers = Beer.all(:include => [:brewery, :style]).sort_by { |b| b.send(sort_order) }
+	@beers = Beer.all.sort_by { |b| b.send(sort_order) }
     
     respond_to do |format|
 		format.html # index.html.erb

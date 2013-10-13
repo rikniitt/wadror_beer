@@ -8,8 +8,8 @@ class BreweriesController < ApplicationController
   # GET /breweries.json
   def index
 	sort_order = ['name', 'year'].include?(params[:order]) ? params[:order] : 'name';
-  
-    @active_breweries = Brewery.active.sort_by { |b| b.send(sort_order) }
+	
+	@active_breweries = Brewery.active.sort_by { |b| b.send(sort_order) }
 	@retired_breweries = Brewery.retired
 	
     respond_to do |format|
