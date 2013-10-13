@@ -4,7 +4,7 @@ describe "Breweries page" do
 	
 	it "should not have any before been created" do
 		visit breweries_path
-		expect(page).to have_content 'Listing breweries'
+		expect(page).to have_css 'h1', text: 'Breweries'
 		expect(page).to have_content 'Number of active breweries: 0'
 	end
   

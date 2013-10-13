@@ -52,19 +52,19 @@ describe "User" do
 		it "displays users favorite beer" do
 			visit user_path @user.id
 			
-			expect(page).to have_content "Favorite beer: #{@beer}"
+			expect(page).to have_content "Favorite beer #{@beer}"
 		end
 		
 		it "displays users favorite style" do
 			visit user_path @user.id
 			
-			expect(page).to have_content "Favorite style: #{@beer.style}"
+			expect(page).to have_content "Favorite style #{@beer.style}"
 		end
 		
 		it "shows users favorite brewery" do
 			visit user_path @user.id
 			
-			expect(page).to have_content "Favorite brewery: #{@beer.brewery}"
+			expect(page).to have_content "Favorite brewery #{@beer.brewery}"
 		end
 		
 		it "removes rating when user deletes it" do

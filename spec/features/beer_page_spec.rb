@@ -35,7 +35,7 @@ describe "Beer page" do
   
 		it "shows the details" do
 
-			expect(page).to have_content "Name: #{@jaipur.name}"
+			expect(page).to have_css 'h2', text: "#{@jaipur.name}"
 			expect(page).to have_content "Style: #{@jaipur.style}"
 			expect(page).to have_content "Brewery: #{@jaipur.brewery}"
 		end

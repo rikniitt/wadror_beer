@@ -64,7 +64,7 @@ gpa.ratings.create :score => 39, :user_id => user.id
 
 Membership.create :user_id => user.id, :beer_club_id => c.id, :confirmed => true
 
-
+=begin
 users = 100
 breweries = 50
 beers_in_brewery = 50
@@ -98,3 +98,4 @@ User.all.each do |u|
     u.ratings << r
   end
 end
+=end
